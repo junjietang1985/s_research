@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 public class Sssz300Utils
 {
+	private static String SUFFIX_SS = ".SS";
+	private static String SUFFIX_SZ = ".SZ";
 
 	/**
 	 * returns a list containing all the 300 stocks in the sssz300 to initialize the db
@@ -29,22 +31,22 @@ public class Sssz300Utils
 		{
 			URL url = new URL(targetUrl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			//			int responseCode = conn.getResponseCode();
-			//			System.out.println(responseCode);
+			int responseCode = conn.getResponseCode();
+			System.out.println(responseCode);
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream())))
 			{
 				String line;
-				//				int count = 0;
+								int count = 0;
 				while ((line = br.readLine()) != null)
 				{
 					line = line.replaceAll(regexHTMLTag, "");
 					Matcher matcher = pattern.matcher(line);
 					if (matcher.find())
 					{
-						//						count++;
+												count++;
 						String stockCode = line.substring(matcher.start() + 1, matcher.start() + 7);
-						//						System.out.println(count + "." + stockCode);
-						res.add(stockCode);
+												System.out.println(count + "." + stockCode);
+						res.add(stockCode + (isSsStock(stockCode) ? SUFFIX_SS : SUFFIX_SZ));
 					}
 				}
 			}
@@ -59,6 +61,11 @@ public class Sssz300Utils
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	public static boolean isSsStock(String stockCode)
+	{
+		return stockCode.charAt(0) == '6';
 	}
 
 	public static void main(String[] args)
