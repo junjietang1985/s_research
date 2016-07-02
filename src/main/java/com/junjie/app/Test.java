@@ -23,7 +23,6 @@ public class Test {
         stock.setStockCode(stock.getStockCode()+1);
         
         dao.save(stock);
-
 	}
 
 }
