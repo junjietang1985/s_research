@@ -21,8 +21,8 @@ public class StockDao extends JdbcDaoSupport {
 	}
 	
 	public int save(Stock stock){
-		String sql="INSERT INTO " + TABLE_NAME + "(stock_code, is_sssz300) VALUES (?, ?)";
-		return getJdbcTemplate().update(sql, new Object[]{stock.getStockCode(),stock.getIsSssz300()});
+		String sql="INSERT INTO " + TABLE_NAME + "(stock_code, is_sssz300, allow_sync) VALUES (?, ?, ?)";
+		return getJdbcTemplate().update(sql, new Object[]{stock.getStockCode(),stock.getIsSssz300(),stock.getAllowSync()});
 	}
 	
 	public Stock getByStockCode(String stockCode){

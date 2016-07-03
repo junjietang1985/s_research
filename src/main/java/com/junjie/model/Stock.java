@@ -4,6 +4,8 @@ public class Stock {
 	int id;
 	String stockCode;
 	boolean isSssz300;
+	boolean allowSync;
+	
 	public boolean getIsSssz300() {
 		return isSssz300;
 	}
@@ -21,6 +23,12 @@ public class Stock {
 	}
 	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
+	}
+	public boolean getAllowSync() {
+		return allowSync;
+	}
+	public void setAllowSync(boolean allowSync) {
+		this.allowSync = allowSync;
 	}
 	
 	

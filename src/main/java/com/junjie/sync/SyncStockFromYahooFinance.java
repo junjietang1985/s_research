@@ -68,7 +68,6 @@ public class SyncStockFromYahooFinance {
 	}
 
 	public static void main(String[] args) {
-//		new SyncStockFromYahooFinance().a("000858.SZ");
 
 	}
 
