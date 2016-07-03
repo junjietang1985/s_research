@@ -36,16 +36,16 @@ public class Sssz300Utils
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream())))
 			{
 				String line;
-								int count = 0;
+//								int count = 0;
 				while ((line = br.readLine()) != null)
 				{
 					line = line.replaceAll(regexHTMLTag, "");
 					Matcher matcher = pattern.matcher(line);
 					if (matcher.find())
 					{
-												count++;
+//												count++;
 						String stockCode = line.substring(matcher.start() + 1, matcher.start() + 7);
-												System.out.println(count + "." + stockCode);
+//												System.out.println(count + "." + stockCode);
 						res.add(stockCode + (isSsStock(stockCode) ? SUFFIX_SS : SUFFIX_SZ));
 					}
 				}
