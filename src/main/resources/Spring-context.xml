@@ -7,5 +7,8 @@
 	<import resource="db/Spring-Datasource.xml" />
 	
 	<import resource="spring-beans/dao/StockDao.xml" />
+	<import resource="spring-beans/dao/StockHistoryDao.xml" />
+	
+	<import resource="spring-beans/sync/SyncStockFromYahooFinanceService.xml"/>
 
 </beans>

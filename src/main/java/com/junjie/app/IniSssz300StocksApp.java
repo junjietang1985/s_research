@@ -24,7 +24,7 @@ public class IniSssz300StocksApp {
 	private void work() {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"Spring-context.xml");
-		StockDao dao = (StockDao) context.getBean("stockDAO");
+		StockDao dao = (StockDao) context.getBean("stockDao");
 
 		List<String> list = Sssz300Utils.getSSSZ300Stocks();
 		for (String stockCode : list) {

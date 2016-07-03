@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="stockDao" class="com.junjie.dao.StockDao">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="syncStockFromYahooFinanceService" class="com.junjie.sync.SyncStockFromYahooFinanceService">
 	</bean>
 
 </beans>

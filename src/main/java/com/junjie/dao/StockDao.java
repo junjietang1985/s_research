@@ -2,6 +2,8 @@ package com.junjie.dao;
 
 
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -37,6 +39,11 @@ public class StockDao extends JdbcDaoSupport {
 			return null;
 		}
 		
+	}
+	
+	public List<Integer> getStockIdByAllowSyncIsSssz300(Boolean allowSync, Boolean isSssz300){
+		String sql = "SELECT id FROM " + TABLE_NAME + " WHERE allow_sync = ? AND is_sssz300 = ? ";
+		return getJdbcTemplate().queryForList(sql, new Object[]{ allowSync, isSssz300},Integer.class);
 	}
 
 }

@@ -15,7 +15,7 @@ import com.junjie.model.StockHistory;
 import com.junjie.net.HttpURLConnectionUtils;
 import com.junjie.utils.YahooFinanceUtils;
 
-public class SyncStockFromYahooFinance {
+public class SyncStockFromYahooFinanceService {
 	private static boolean SKIP_HEAD_LINE = true;
 	private static String SEPARATOR = ",";
 	private static int NUM_OF_COLUMN = 7;
@@ -40,7 +40,7 @@ public class SyncStockFromYahooFinance {
 							"number of columns is not " + NUM_OF_COLUMN);
 				}
 
-				StockHistory stockHistory = toStockHistory(columns);
+				StockHistory stockHistory = toStockHistory(stockCode, columns);
 				res.add(stockHistory);
 			}
 		} catch (IOException e) {
@@ -50,9 +50,10 @@ public class SyncStockFromYahooFinance {
 
 	}
 
-	private StockHistory toStockHistory(String[] columns) {
+	private StockHistory toStockHistory(String stockCode, String[] columns) {
 		try {
-			return StockHistory.builder().date(DATE_FORMAT.parse(columns[0]))
+			return StockHistory.builder().stockCode(stockCode)
+					.date(DATE_FORMAT.parse(columns[0]))
 					.open(Float.parseFloat(columns[1]))
 					.high(Float.parseFloat(columns[2]))
 					.low(Float.parseFloat(columns[3]))
@@ -68,7 +69,8 @@ public class SyncStockFromYahooFinance {
 	}
 
 	public static void main(String[] args) {
-
+		System.out.println(new SyncStockFromYahooFinanceService()
+				.getStockHistory("000858.SZ").size());
 	}
 
 }

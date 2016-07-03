@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="stockDao" class="com.junjie.dao.StockDao">
+	<bean id="stockHistoryDao" class="com.junjie.dao.StockHistoryDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 

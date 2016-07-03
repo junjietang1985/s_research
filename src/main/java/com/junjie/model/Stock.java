@@ -1,7 +1,7 @@
 package com.junjie.model;
 
 public class Stock {
-	int id;
+	Integer id;
 	String stockCode;
 	boolean isSssz300;
 	boolean allowSync;
@@ -12,10 +12,10 @@ public class Stock {
 	public void setIsSssz300(boolean isSssz300) {
 		this.isSssz300 = isSssz300;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getStockCode() {
