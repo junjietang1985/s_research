@@ -11,9 +11,9 @@ public class StockHistory
 	private Float low;
 	private Float close;
 	private Long volume;
-	private Float adjColse;
+	private Float adjClose;
 
-	public StockHistory(Long id, Date date, Float open, Float high, Float low, Float close, Long volume, Float adjColse)
+	public StockHistory(Long id, Date date, Float open, Float high, Float low, Float close, Long volume, Float adjClose)
 	{
 		super();
 		this.id = id;
@@ -23,7 +23,7 @@ public class StockHistory
 		this.low = low;
 		this.close = close;
 		this.volume = volume;
-		this.adjColse = adjColse;
+		this.adjClose = adjClose;
 	}
 	public Long getId()
 	{
@@ -65,13 +65,13 @@ public class StockHistory
 	{
 		this.close = close;
 	}
-	public Float getAdjColse()
+	public Float getAdjClose()
 	{
-		return adjColse;
+		return adjClose;
 	}
-	public void setAdjColse(Float adjColse)
+	public void setAdjClose(Float adjClose)
 	{
-		this.adjColse = adjColse;
+		this.adjClose = adjClose;
 	}
 	public Date getDate()
 	{
@@ -93,7 +93,7 @@ public class StockHistory
 	public String toString()
 	{
 		return String.format("StockHistory [id: %d, date: %s, open: %f, high: %f, low: %f, close: %f, volume: %d, adjClose: %f]", id, date, open,
-			high, low, close, volume, adjColse);
+			high, low, close, volume, adjClose);
 	}
 	public static Builder builder()
 	{
@@ -146,9 +146,9 @@ public class StockHistory
 			this.volume = volume;
 			return this;
 		}
-		public Builder adjColse(Float adjColse)
+		public Builder adjClose(Float adjClose)
 		{
-			this.adjClose = adjColse;
+			this.adjClose = adjClose;
 			return this;
 		}
 		public StockHistory build()
