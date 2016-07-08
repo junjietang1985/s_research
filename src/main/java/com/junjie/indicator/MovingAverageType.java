@@ -13,14 +13,14 @@ public enum MovingAverageType
 		this.dbColName = dbColName;
 	}
 
-	public int getValue(MovingAverageType e)
+	public int getValue()
 	{
-		return e.value;
+		return value;
 	}
 
-	public String getDbColName(MovingAverageType e)
+	public String getDbColName()
 	{
-		return e.dbColName;
+		return dbColName;
 	}
 
 }
