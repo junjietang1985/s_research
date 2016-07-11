@@ -5,10 +5,11 @@
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<import resource="db/Spring-Datasource.xml" />
-	
+
 	<import resource="spring-beans/dao/StockDao.xml" />
 	<import resource="spring-beans/dao/StockHistoryDao.xml" />
-	
-	<import resource="spring-beans/sync/SyncStockFromYahooFinanceService.xml"/>
+
+	<import resource="spring-beans/sync/SyncStockFromYahooFinanceService.xml" />
+	<import resource="spring-beans/sync/SyncStockHistoryService.xml" />
 
 </beans>
