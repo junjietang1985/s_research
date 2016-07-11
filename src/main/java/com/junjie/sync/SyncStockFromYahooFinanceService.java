@@ -25,7 +25,7 @@ public class SyncStockFromYahooFinanceService {
 	// 000858.SZ
 	public List<StockHistory> getStockHistory(String stockCode) {
 		String targetUrl = YahooFinanceUtils
-				.getDownloadToSpreadsheetURL(stockCode);
+				.getDownloadToSpreadsheetURLForFullHistory(stockCode);
 		List<StockHistory> res = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
 				HttpURLConnectionUtils.getInputStream(targetUrl)))) {
