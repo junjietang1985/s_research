@@ -15,7 +15,7 @@ public class StockMa
 
 	public StockMa()
 	{
-		
+
 	}
 
 	public String getStockCode()
@@ -96,6 +96,13 @@ public class StockMa
 	public void setMa60(Float ma60)
 	{
 		this.ma60 = ma60;
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("[StockMa] -- [stockCode: %s, date: %s, ma5: %f, ma10: %f, ma20: %f, ma30: %f, ma60: %f]", this.stockCode, this.date,
+			this.ma5, this.ma10, this.ma20, this.ma30, this.ma60);
 	}
 
 }
