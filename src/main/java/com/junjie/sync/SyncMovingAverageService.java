@@ -17,7 +17,7 @@ public class SyncMovingAverageService
 	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-context.xml");
 	StockMaDao stockMaDao = (StockMaDao) context.getBean("stockMaDao");
 
-	public void a(List<StockHistory> stockHistories, EnumSet<MovingAverageType> movingAverageTypes)
+	public void syncStockHistory(List<StockHistory> stockHistories, EnumSet<MovingAverageType> movingAverageTypes)
 	{
 		for (StockHistory stockHistory : stockHistories)
 		{
@@ -34,14 +34,20 @@ public class SyncMovingAverageService
 				this.setAllMaValue(stockHistories, stockHistories.indexOf(stockHistory), stockMa, movingAverageTypes);
 				//TODO save
 			}
+			System.out.println(stockMa.toString());
 		}
 	}
 
 	public void setAllMaValue(List<StockHistory> stockHistories, int indexOfComputation, StockMa stockMa,
 			EnumSet<MovingAverageType> movingAverageTypes)
 	{
+		int count = 0;
 		for (MovingAverageType movingAverageType : movingAverageTypes)
 		{
+			//TODO
+			count++;
+			if (count > 100) break;
+
 			int days = movingAverageType.getValue();
 			Double sum = 0d;
 			//TODO will fail at the end of the test

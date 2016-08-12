@@ -3,9 +3,6 @@ package com.junjie.sync;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ public class SyncStockFromYahooFinanceService {
 	// 000858.SZ
 	public List<StockHistory> getStockHistory(String stockCode) {
 		String targetUrl = YahooFinanceUtils
-				.getDownloadToSpreadsheetURLForFullHistory(stockCode);
+				.getDownloadAllHistoricalPricesUrl(stockCode);
 		List<StockHistory> res = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
 				HttpURLConnectionUtils.getInputStream(targetUrl)))) {
