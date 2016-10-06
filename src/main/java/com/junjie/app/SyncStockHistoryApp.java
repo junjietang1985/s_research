@@ -6,6 +6,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.junjie.sync.SyncStockHistoryService;
 
+/**
+ * This app syncs all the stocks which are needed (during developing peroiod, it's sssz300 stock and allow sync=true)
+ */
 public class SyncStockHistoryApp
 {
 

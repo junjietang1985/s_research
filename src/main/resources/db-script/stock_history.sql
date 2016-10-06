@@ -10,4 +10,4 @@ CREATE TABLE `stock_history` (
   `adjClose` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `u_stock_code_date` (`stock_code`,`date`)
-) ENGINE=InnoDB AUTO_INCREMENT=4203 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
