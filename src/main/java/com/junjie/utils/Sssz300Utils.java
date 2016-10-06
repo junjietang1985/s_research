@@ -32,20 +32,17 @@ public class Sssz300Utils
 			URL url = new URL(targetUrl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			int responseCode = conn.getResponseCode();
-			System.out.println(responseCode);
+			System.out.println("respons code:" + responseCode);
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream())))
 			{
 				String line;
-//								int count = 0;
 				while ((line = br.readLine()) != null)
 				{
 					line = line.replaceAll(regexHTMLTag, "");
 					Matcher matcher = pattern.matcher(line);
 					if (matcher.find())
 					{
-//												count++;
 						String stockCode = line.substring(matcher.start() + 1, matcher.start() + 7);
-//												System.out.println(count + "." + stockCode);
 						res.add(stockCode + (isSsStock(stockCode) ? SUFFIX_SS : SUFFIX_SZ));
 					}
 				}
@@ -70,7 +67,7 @@ public class Sssz300Utils
 
 	public static void main(String[] args)
 	{
-		getSSSZ300Stocks();
+		System.out.println("size:" + getSSSZ300Stocks().size());
 	}
 
 }

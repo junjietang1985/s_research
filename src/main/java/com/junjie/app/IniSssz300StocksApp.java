@@ -10,6 +10,9 @@ import com.junjie.dao.StockDao;
 import com.junjie.model.Stock;
 import com.junjie.utils.Sssz300Utils;
 
+/**
+ *	This app is used for initialization of the DB to save the sssz300 stocks, whic is a one time app. 
+ */
 public class IniSssz300StocksApp {
 
 	Logger log = Logger.getLogger(this.getClass());

@@ -36,10 +36,12 @@ public class SyncStockHistoryService
 		this.syncStockFromYahooFinanceService = syncStockFromYahooFinanceService;
 	}
 
+	//TODO
+	// it downloads the whole history then filter data synced, which should be improved.
 	public void sync()
 	{
 		List<Integer> stockIds = this.stockDao.getStockIdByAllowSyncIsSssz300(true, true);
-		log.info(String.format("found %d stocks which are allow synced and sssz300 stocks", stockIds.size()));
+		log.info(String.format("found %d stocks which are allow synced and belong to sssz300 stocks", stockIds.size()));
 
 		for (Integer stockId : stockIds)
 		{
