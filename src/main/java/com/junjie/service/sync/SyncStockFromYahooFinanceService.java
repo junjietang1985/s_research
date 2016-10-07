@@ -1,4 +1,4 @@
-package com.junjie.sync;
+package com.junjie.service.sync;
 
 import java.io.BufferedReader;
 import java.io.IOException;

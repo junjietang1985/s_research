@@ -1,4 +1,4 @@
-package com.junjie.sync;
+package com.junjie.service.sync;
 
 import java.util.Date;
 import java.util.EnumSet;

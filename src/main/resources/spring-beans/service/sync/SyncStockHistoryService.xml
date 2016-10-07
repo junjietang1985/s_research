@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="syncStockFromYahooFinanceService" class="com.junjie.sync.SyncStockFromYahooFinanceService">
+	<bean id="syncStockHistoryService" class="com.junjie.service.sync.SyncStockHistoryService">
+		<constructor-arg ref="stockDao"></constructor-arg>
+		<constructor-arg ref="stockHistoryDao"></constructor-arg>
+		<constructor-arg ref="syncStockFromYahooFinanceService"></constructor-arg>
 	</bean>
-
-</beans>
+</beans> 

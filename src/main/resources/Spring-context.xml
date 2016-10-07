@@ -9,7 +9,7 @@
 	<import resource="spring-beans/dao/StockDao.xml" />
 	<import resource="spring-beans/dao/StockHistoryDao.xml" />
 
-	<import resource="spring-beans/sync/SyncStockFromYahooFinanceService.xml" />
-	<import resource="spring-beans/sync/SyncStockHistoryService.xml" />
+	<import resource="spring-beans/service/sync/SyncStockFromYahooFinanceService.xml" />
+	<import resource="spring-beans/service/sync/SyncStockHistoryService.xml" />
 
 </beans>
