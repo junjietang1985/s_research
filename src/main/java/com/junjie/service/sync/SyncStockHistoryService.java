@@ -1,5 +1,7 @@
 package com.junjie.service.sync;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import com.junjie.dao.StockDao;
 import com.junjie.dao.StockHistoryDao;
 import com.junjie.model.Stock;
 import com.junjie.model.StockHistory;
+import com.junjie.utils.YahooFinanceUtils;
 
 public class SyncStockHistoryService
 {
@@ -36,9 +39,7 @@ public class SyncStockHistoryService
 		this.syncStockFromYahooFinanceService = syncStockFromYahooFinanceService;
 	}
 
-	//TODO
-	// it downloads the whole history then filter data synced, which should be improved.
-	public void sync()
+	public void sync(boolean isForceSync)
 	{
 		List<Integer> stockIds = this.stockDao.getStockIdByAllowSyncIsSssz300(true, true);
 		log.info(String.format("found %d stocks which are allow synced and belong to sssz300 stocks", stockIds.size()));
@@ -46,15 +47,34 @@ public class SyncStockHistoryService
 		for (Integer stockId : stockIds)
 		{
 			Stock stock = this.stockDao.getById(stockId);
-			Date lastSyncDate = stockHistoryDao.getLastSyncDate(stock.getStockCode());
-			//TODO
-			System.out.println(lastSyncDate);
-			List<StockHistory> stockHistoryList = this.syncStockFromYahooFinanceService.getStockHistory(stock.getStockCode());
-			log.info(String.format("syncing stock history of stock %s for %d days", stock.getStockCode(), stockHistoryList.size()));
-			stockHistoryList.stream().filter(sh -> sh.getDate().after(lastSyncDate)).forEach(sh -> this.saveWithLog(sh));
+			if (isForceSync)
+			{
+				log.info(String.format("force syncing stock: %d", stockId));
+				String targetUrl = YahooFinanceUtils.getDownloadFullHistoricalPricesUrl(stock.getStockCode());
+				List<StockHistory> stockHistoryList = this.syncStockFromYahooFinanceService.getStockHistory(stock.getStockCode(), targetUrl);
+				stockHistoryList.forEach(sh -> this.saveWithLog(sh));
+			}
+			else
+			{
+				Date lastSyncDate = stockHistoryDao.getLastSyncDate(stock.getStockCode());
+				//TODO
+				System.out.println("last sync date" + lastSyncDate);
+				LocalDate from = lastSyncDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(1);
+				LocalDate to = LocalDate.now().minusDays(1);
+				if (from.isBefore(to))
+				{
+					String targetUrl = YahooFinanceUtils.getDownloadPartialHistoricalPricesUrl(stock.getStockCode(), from, LocalDate.now());
+					List<StockHistory> stockHistoryList = this.syncStockFromYahooFinanceService.getStockHistory(stock.getStockCode(), targetUrl);
+					log.info(String.format("syncing stock history of stock %s for %d days", stock.getStockCode(), stockHistoryList.size()));
+					stockHistoryList.stream().filter(sh -> sh.getDate().after(lastSyncDate)).forEach(sh -> this.saveWithLog(sh));
+				}
+				else
+				{
+					log.info(String.format("stock %s is already up-to-date, nothing to sync", stock.getStockCode()));
+				}
+			}
 		}
 	}
-
 	public void saveWithLog(StockHistory stockHistory)
 	{
 		log.info(String.format("saving into db: %s", stockHistory));

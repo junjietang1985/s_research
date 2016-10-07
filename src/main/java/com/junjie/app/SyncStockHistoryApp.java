@@ -14,17 +14,18 @@ public class SyncStockHistoryApp
 
 	Logger log = Logger.getLogger(this.getClass());
 
-	private void work()
+	private void work(boolean isForceSync)
 	{
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-context.xml");
 		SyncStockHistoryService syncStockHistoryService = (SyncStockHistoryService) context.getBean("syncStockHistoryService");
-		syncStockHistoryService.sync();
+		syncStockHistoryService.sync(isForceSync);
 
 	}
 
 	public static void main(String[] args)
 	{
-		new SyncStockHistoryApp().work();
+		// force sync flag
+		new SyncStockHistoryApp().work(false);
 	}
 
 }

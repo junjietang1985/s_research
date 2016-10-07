@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.junjie.model.StockHistory;
 import com.junjie.net.HttpURLConnectionUtils;
-import com.junjie.utils.YahooFinanceUtils;
 
 public class SyncStockFromYahooFinanceService
 {
@@ -20,10 +19,8 @@ public class SyncStockFromYahooFinanceService
 	private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	// 000858.SZ
-	public List<StockHistory> getStockHistory(String stockCode)
+	public List<StockHistory> getStockHistory(String stockCode, String targetUrl)
 	{
-		String targetUrl = YahooFinanceUtils.getDownloadAllHistoricalPricesUrl(stockCode);
-		System.out.println("target url:" + targetUrl);
 		List<StockHistory> res = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(HttpURLConnectionUtils.getInputStream(targetUrl))))
 		{
@@ -73,7 +70,7 @@ public class SyncStockFromYahooFinanceService
 
 	public static void main(String[] args)
 	{
-		System.out.println(new SyncStockFromYahooFinanceService().getStockHistory("000858.SZ").size());
+//		System.out.println(new SyncStockFromYahooFinanceService().getStockHistory("000858.SZ").size());
 	}
 
 }

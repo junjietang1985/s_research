@@ -30,13 +30,13 @@ public class YahooFinanceUtils
 	/**
 	 * returns a URL for downloading a csv from 2005.01.01 to today
 	 */
-	public static String getDownloadAllHistoricalPricesUrl(String stockCode)
+	public static String getDownloadFullHistoricalPricesUrl(String stockCode)
 	{
 		return getDownloadPartialHistoricalPricesUrl(stockCode, LocalDate.of(2005, 1, 1), LocalDate.now());
 	}
 
 	public static void main(String args[])
 	{
-		System.out.println(getDownloadAllHistoricalPricesUrl("000858.SZ"));
+		System.out.println(getDownloadFullHistoricalPricesUrl("000858.SZ"));
 	}
 }
