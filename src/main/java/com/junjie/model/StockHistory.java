@@ -14,7 +14,7 @@ public class StockHistory
 	private Long volume;
 	private Float adjClose;
 
-	public StockHistory(Long id,String stockCode, Date date, Float open, Float high, Float low, Float close, Long volume, Float adjClose)
+	public StockHistory(Long id, String stockCode, Date date, Float open, Float high, Float low, Float close, Long volume, Float adjClose)
 	{
 		super();
 		this.id = id;
@@ -91,17 +91,33 @@ public class StockHistory
 	{
 		this.volume = volume;
 	}
-	public String getStockCode() {
+	public String getStockCode()
+	{
 		return stockCode;
 	}
-	public void setStockCode(String stockCode) {
+	public void setStockCode(String stockCode)
+	{
 		this.stockCode = stockCode;
 	}
+
+	public boolean isValid()
+	{
+		if (this.open.equals(this.close) && this.open.equals(this.high) && this.open.equals(this.low) && this.open.equals(this.adjClose)
+				&& this.volume.equals(0L))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
 	@Override
 	public String toString()
 	{
-		return String.format("StockHistory [id: %d, stockCode: %s, date: %s, open: %f, high: %f, low: %f, close: %f, volume: %d, adjClose: %f]", id, stockCode, date, open,
-			high, low, close, volume, adjClose);
+		return String.format("StockHistory [id: %d, stockCode: %s, date: %s, open: %f, high: %f, low: %f, close: %f, volume: %d, adjClose: %f]", id,
+			stockCode, date, open, high, low, close, volume, adjClose);
 	}
 	public static Builder builder()
 	{
@@ -125,7 +141,8 @@ public class StockHistory
 			this.id = id;
 			return this;
 		}
-		public Builder stockCode(String stockCode){
+		public Builder stockCode(String stockCode)
+		{
 			this.stockCode = stockCode;
 			return this;
 		}

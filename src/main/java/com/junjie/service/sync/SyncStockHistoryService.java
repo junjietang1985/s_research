@@ -65,8 +65,12 @@ public class SyncStockHistoryService
 				{
 					String targetUrl = YahooFinanceUtils.getDownloadPartialHistoricalPricesUrl(stock.getStockCode(), from, LocalDate.now());
 					List<StockHistory> stockHistoryList = this.syncStockFromYahooFinanceService.getStockHistory(stock.getStockCode(), targetUrl);
-					log.info(String.format("syncing stock history of stock %s for %d days", stock.getStockCode(), stockHistoryList.size()));
-					stockHistoryList.stream().filter(sh -> sh.getDate().after(lastSyncDate)).forEach(sh -> this.saveWithLog(sh));
+					log.info(String.format("syncing stock history of stock %s for %d days (may include days without trading)", stock.getStockCode(),
+						stockHistoryList.size()));
+					// filter the date before last sync date
+					// filter the date containing invalid date (e.g., holidays & not be able to trade)
+					stockHistoryList.stream().filter(sh -> sh.getDate().after(lastSyncDate)).filter(sh -> sh.isValid())
+						.forEach(sh -> this.saveWithLog(sh));
 				}
 				else
 				{
