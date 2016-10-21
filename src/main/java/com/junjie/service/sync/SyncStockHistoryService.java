@@ -25,10 +25,10 @@ public class SyncStockHistoryService
 
 	SyncStockFromYahooFinanceService syncStockFromYahooFinanceService;
 
-	public SyncStockHistoryService()
-	{
-
-	}
+//	public SyncStockHistoryService()
+//	{
+//
+//	}
 
 	@Autowired
 	public SyncStockHistoryService(StockDao stockDao, StockHistoryDao stockHistoryDao,
